@@ -53,17 +53,7 @@ function App() {
           value: value,
         },
         {
-          field: "market_cap",
-          operator: "contains",
-          value: value,
-        },
-        {
           field: "sector",
-          operator: "contains",
-          value: value,
-        },
-        {
-          field: "type",
           operator: "contains",
           value: value,
         },
