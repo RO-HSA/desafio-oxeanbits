@@ -13,14 +13,14 @@ function App() {
   const [filter, setFilter] = useState()
   const [stocks, setStocks] = useState()
 
-  const url = `https://brapi.dev/api/quote/list?token=${process.env.API_TOKEN}`
+  const url = `https://brapi.dev/api/quote/list`
   const { data, isLoading } = useSWR(url, fetcher)
 
   useEffect(() => {
     if (!isLoading) {
       setStocks(data.stocks)
     }
-  }, [isLoading])
+  }, [isLoading, data])
 
   const filterData = (e) => {
     let value = e.target.value;
@@ -72,26 +72,26 @@ function App() {
     setStocks(filterBy(data.stocks, filter));
   }
 
+
   return (
     <div className="App">
       <Grid
-        style={{height: '100%', width: '100%'}}
-        data={stocks}
+        style={{height: '920px', width: '100vw'}}
+        data={filterBy(stocks, filter) || []}
         filterable={true}
         filter={filter}
+        size='small'
         onFilterChange={(e) => setFilter(e.filter)}
       >
         <GridToolbar>
-          <Input onChange={filterData}/>
+          <Input onChange={filterData} style={{width: '170px'}} placeholder='Search in all columns...'/>
         </GridToolbar>
-        <Column field='stock' title='Stock'/>
-        <Column field='name' title='Company Name'/>
-        <Column field='close' title='Close'/>
+        <Column field='stock' title='Stock' />
+        <Column field='name' title='Company Name' />
+        <Column field='close' title='Close' />
         <Column field='change' title='Change'/>
         <Column field='volume' title='Volume'/>
-        <Column field='market_cap' title='Market Cap'/>
         <Column field='sector' title='Sector'/>
-        <Column field='type' title='Type'/>
       </Grid>
     </div>
   );
