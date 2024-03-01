@@ -2,3 +2,10 @@
   display: flex;
   padding: 16px;
 }
+
+@media screen and (max-width: 768px) {
+  .App {
+    padding: 0;
+  }
+  
+}
