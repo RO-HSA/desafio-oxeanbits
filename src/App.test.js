@@ -14,5 +14,7 @@ describe('App Component', () => {
     render(<App />);
 
     await waitFor(() => expect(DataGrid).toHaveBeenCalled());
+
+    expect(<DataGrid />).toBeDefined();
   });
 });

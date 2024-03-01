@@ -6,27 +6,27 @@ import useSWR from 'swr';
 jest.mock('swr');
 
 describe('DataGrid Component', () => {
-    it('renders without crashing', () => {
-        useSWR.mockReturnValue({ data: undefined, isLoading: true });
+  it('renders without crashing', () => {
+      useSWR.mockReturnValue({ data: undefined, isLoading: true });
 
-        render(<DataGrid />);
+      render(<DataGrid />);
 
-        expect(<DataGrid />).toBeDefined();
-    });
+      expect(<DataGrid />).toBeDefined();
+  });
 
-    it('renders with data', async () => {
-        const mockData = {
-            stocks: [
-                { stock: 'MGLU3', name: 'MAGAZINE LUIZA', close: 2.13, change: -1.84331797, volume: 75685900, sector: 'Retail Trade' },
-            ],
-        };
+  it('renders with data', async () => {
+      const mockData = {
+          stocks: [
+              { stock: 'MGLU3', name: 'MAGAZINE LUIZA', close: 2.13, change: -1.84331797, volume: 75685900, sector: 'Retail Trade' },
+          ],
+      };
 
-        useSWR.mockReturnValue({ data: mockData, isLoading: false });
+      useSWR.mockReturnValue({ data: mockData, isLoading: false });
 
-        render(<DataGrid />);
+      render(<DataGrid />);
 
-        expect(screen.getByText('MGLU3')).toBeInTheDocument();
-    });
+      expect(screen.getByText('MGLU3')).toBeInTheDocument();
+  });
 
   it('filters data correctly', async () => {
     const mockData = {
